@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starry Night of Love</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #001f3f; /* Dark blue for night sky */
+            overflow: hidden;
+            color: white;
+            font-family: 'Cursive', sans-serif;
+            position: relative;
+        }
+
+        .star {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            clip-path: polygon(50% 0%, 63% 35%, 100% 35%, 72% 57%, 79% 100%, 50% 70%, 21% 100%, 28% 57%, 0% 35%, 37% 35%);
+            animation: twinkle 1.5s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        #message {
+            font-size: 24px;
+            text-align: center;
+            opacity: 0;
+            position: absolute;
+            bottom: 100px;
+            transition: opacity 1s ease-in-out;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 16px;
+            color: #f8f9fa;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="message">✨ You are my shining star! ✨</div>
+    <footer>Made with love for you ❤️ by Sana Sharma</footer>
+
+    <script>
+        // Generate random stars
+        function createStars(numStars) {
+            const container = document.body;
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                star.addEventListener('click', showLove);
+                container.appendChild(star);
+            }
+        }
+
+        function showLove() {
+            const message = document.getElementById('message');
+            message.style.opacity = 1;
+
+            // Remove all stars after clicking one
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => star.remove());
+        }
+
+        // Create 30 stars
+        createStars(30);
+    </script>
+
+</body>
+
+</html>
